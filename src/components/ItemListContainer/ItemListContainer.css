@@ -1,4 +1,33 @@
+/* src/components/ItemListContainer/ItemListContainer.css */
+
+.container {
+  max-width: 1100px;
+  margin: 20px auto 40px;
+  padding: 0 16px;
+}
+
 .container h1 {
   text-align: center;
-  padding: 3rem;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
 }
+
+.item-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* Logo centrado debajo del título */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.logo-panaderia {
+  width: 180px;        /* ajustable */
+  height: auto;
+  opacity: 0.95;
+}
+

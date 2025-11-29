@@ -1,7 +1,8 @@
+// src/components/Cart/Cart.jsx
+
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext/useCartContext";
 import { Item } from "../Item/Item";
-
 import "./Cart.css";
 
 export const Cart = () => {
@@ -15,7 +16,10 @@ export const Cart = () => {
         cart.map((prod) => (
           <Item key={prod.id} {...prod}>
             <span>Cantidad: {prod.quantity}</span>
-            <button className="btn" onClick={() => deleteItem(prod.id)}>
+            <button
+              className="btn-panaderia btn-panaderia-cart-elimimar"
+              onClick={() => deleteItem(prod.id)}
+            >
               Eliminar
             </button>
           </Item>
@@ -29,15 +33,15 @@ export const Cart = () => {
           <div className="total-pagar">
             <p>Total a pagar: ${total()}</p>
           </div>
-          <button className="btn" onClick={checkout}>
+          <button className="btn-panaderia" onClick={checkout}>
             Finalizar compra
           </button>
-          <button className="btn" onClick={clearCart}>
+          <button className="btn-panaderia" onClick={clearCart}>
             Vaciar carrito
           </button>
         </div>
       ) : (
-        <Link className="btn" to="/">
+        <Link className="btn-panaderia" to="/">
           Volver al inicio
         </Link>
       )}

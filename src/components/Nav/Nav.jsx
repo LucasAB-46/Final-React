@@ -1,3 +1,5 @@
+// src/components/Nav/Nav.jsx
+
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext/useCartContext";
 import "./Nav.css";
@@ -5,9 +7,6 @@ import "./Nav.css";
 export const Nav = () => {
   const { getTotalItems } = useCartContext();
 
-  //Dejamos los Link preparados para cuando hagamos filtrado por categoria
-  //Por ahora, quedan de vista, pero sirven al tocar para escribir la ruta
-  //en la barra de busqueda
   return (
     <nav>
       <ul>
@@ -15,16 +14,18 @@ export const Nav = () => {
           <Link to={"/"}>Home</Link>
         </li>
         <li>
-          <Link to={"/category/salado"}>Salado</Link>
-        </li>
-        <li>
           <Link to={"/category/dulce"}>Dulce</Link>
         </li>
         <li>
-          <Link to={"/carrito"}>Carrito</Link>
-          {getTotalItems() > 0 && (
-            <span className="in-cart">{getTotalItems()}</span>
-          )}
+          <Link to={"/category/salado"}>Salado</Link>
+        </li>
+        <li className="cart-container">
+          <Link to={"/cart"}>
+            Carrito
+            {getTotalItems() > 0 && (
+              <span className="in-cart">{getTotalItems()}</span>
+            )}
+          </Link>
         </li>
       </ul>
     </nav>

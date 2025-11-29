@@ -1,7 +1,8 @@
+// src/components/ItemListContainer/ItemListContainer.jsx
 import { useEffect, useState } from "react";
-import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
-
+import { ItemList } from "../ItemList/ItemList";
+import { getProducts } from "../../services/products";
 import "./ItemListContainer.css";
 
 export const ItemListContainer = ({ titulo }) => {
@@ -9,19 +10,9 @@ export const ItemListContainer = ({ titulo }) => {
   const { category } = useParams();
 
   useEffect(() => {
-    fetch("/data/products.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Hubo un problema al buscar productos");
-        }
-        return res.json();
-      })
+    getProducts(category)
       .then((data) => {
-        if (category) {
-          setProducts(data.filter((prod) => prod.category === category));
-        } else {
-          setProducts(data);
-        }
+        setProducts(data);
       })
       .catch((err) => {
         console.log(err);
@@ -30,7 +21,18 @@ export const ItemListContainer = ({ titulo }) => {
 
   return (
     <section className="container">
+
       <h1>{titulo}</h1>
+
+      {/* 🔥 LOGO DE PANADERÍA */}
+      <div className="logo-container">
+        <img
+          src="/images/logo-panaderia.png"
+          alt="Logo Panadería"
+          className="logo-panaderia"
+        />
+      </div>
+
       <ItemList lista={products} />
     </section>
   );
